@@ -14,13 +14,13 @@ class SegmenterHelper:
 
     def addMessage(self, text):
         try:
-            self.messages.append(unicode(text, "utf-8"))
+            self.messages.append(str(text, "utf-8"))
             #self.messages.append(text)
         except TypeError:
             try:
                 self.messages.append(text)
             except:
-                print "Failed to log error message for %s" % text
+                print("Failed to log error message for %s" % text)
                 self.messages.append("Failed to log error message! Run in console to see details")
 
 
@@ -90,7 +90,7 @@ class SegmenterHelper:
         import re
         try:
             fh = open(filename)  #throws IOError
-        except Exception, ex:
+        except Exception as ex:
             self.addMessage("**Error: Failed to load filter file %s: (%s)" % (filename, ex))
             return 0
 
@@ -98,8 +98,8 @@ class SegmenterHelper:
         try:
             for line in fh.read().splitlines():
                 lineno += 1
-                if not re.match('\s*#', unicode(line, "utf-8")):
-                    m = re.match('[^ \t]+', unicode(line, "utf-8"))
+                if not re.match('\s*#', str(line, "utf-8")):
+                    m = re.match('[^ \t]+', str(line, "utf-8"))
                     if m:
                         self.filterwords.append(m.group(0))
         finally:
@@ -115,7 +115,8 @@ class SegmenterHelper:
             self.stats[filename] = stat
             self.statFiles[filename] = stat.statisticType
             self.addMessage("Loaded extra column data file %s/%s" % (charset, filename))
-        except IOError as (errno, strerror):
+        except IOError as xxx_todo_changeme:
+            (errno, strerror) = xxx_todo_changeme.args
             self.addMessage("**Failed to load data file %s: %s" % (fullpath, strerror))
 
     def ReadFiles(self, filelist):
@@ -135,8 +136,8 @@ class SegmenterHelper:
                 detector = chardet.detect(rawdata)
                 self.addMessage("File %s loaded: %i bytes" % (f.encode('utf-8'), len(rawdata)))
                 self.addMessage("Detected encoding: %s\n" % detector)
-                text += '%s [%s]\n%s' % (segmenter.Segmenter.sectionBreakChar, f, unicode(rawdata, detector["encoding"]))
-            except UnicodeDecodeError, e:
+                text += '%s [%s]\n%s' % (segmenter.Segmenter.sectionBreakChar, f, str(rawdata, detector["encoding"]))
+            except UnicodeDecodeError as e:
                 self.addMessage("%s error while loading file %s: failed to decode from encoding '%s'. Filesize was %d" % (type(e), f, detector["encoding"], len(rawdata)))
                 
         

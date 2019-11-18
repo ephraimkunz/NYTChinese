@@ -31,15 +31,15 @@ clozes = {}
 
 try:
     fh = open(filename_words)  #throws IOError
-    lines = unicode(fh.read(), "utf-8").splitlines()
+    lines = str(fh.read(), "utf-8").splitlines()
     fh.close()
-except (WindowsError, IOError), e:
-    print "Error: Failed to load source file %s: %s" % (filename, e.message)
+except (WindowsError, IOError) as e:
+    print("Error: Failed to load source file %s: %s" % (filename, e.message))
     sys.exit(1)
 
 
 for line in lines:
-    if re.match(u'\s*#', line) or re.match(u'\s*$', line):
+    if re.match('\s*#', line) or re.match('\s*$', line):
         continue
     word = line.split("\t")[0]
     
@@ -47,7 +47,7 @@ for line in lines:
         for char in set(word):
             pattern = re.compile(char)
             tmpword = re.sub(pattern, "__", word)
-            if not re.match(u'^_+$', tmpword):  # can leave out repetition words ____ as not useful
+            if not re.match('^_+$', tmpword):  # can leave out repetition words ____ as not useful
                 try:
                     clozes[char].append(tmpword)
                 except KeyError:
@@ -62,8 +62,8 @@ out.write("""#
 #
 #term\tcloze
 """ % (filename_words))
-for char in clozes.keys():
-    out.write("%s\t%s\n" % (char, u", ".join(clozes[char][0:4])))
+for char in list(clozes.keys()):
+    out.write("%s\t%s\n" % (char, ", ".join(clozes[char][0:4])))
 
 '''
 fh = open("../dict/chardict-unihan_readingsX.u8", "w")

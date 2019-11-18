@@ -6,7 +6,7 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 import re,os
 
 from segmenter.plugins import SegmentMethodPlugin
-print SegmentMethodPlugin.__subclasses__()
+print(SegmentMethodPlugin.__subclasses__())
 
 try:
     WindowsError
@@ -17,22 +17,22 @@ except NameError:
 
 class CJK:
     #http://en.wikipedia.org/wiki/CJK_Unified_Ideographs
-    cjkUnifiedIdeographs = u'\u4E00-\u9FFF'
-    cjkUnifiedIdeographsExtA = u'\u3400-\u4DBF'
+    cjkUnifiedIdeographs = '\u4E00-\u9FFF'
+    cjkUnifiedIdeographsExtA = '\u3400-\u4DBF'
     #cjkUnifiedIdeographsExtB = u'\u20000-2A6DF'
     #cjkEnclosedLettersAndMonths = u'\u3200-\u32FF'
-    cjkCompatibilityIdeographs = u'\uF900-\uFAFF'
+    cjkCompatibilityIdeographs = '\uF900-\uFAFF'
     
     #Non-CJK characters used in simplified/traditional field 
     #Some of these are covered in Halfwidth and Fullwidth Forms. But this makes a stricter filter
-    cjkMiddleDot = u'\u00B7'
-    cjkFullwidthComma = u'\uFF0C'
-    cjkLingZero = u'\u3007'
-    cjkFullwidthLatin = u'\uFF21-\uFF3A\uFF41-\uFF5A'
-    cjkKatakanaMiddleDot = u'\u30FB'
+    cjkMiddleDot = '\u00B7'
+    cjkFullwidthComma = '\uFF0C'
+    cjkLingZero = '\u3007'
+    cjkFullwidthLatin = '\uFF21-\uFF3A\uFF41-\uFF5A'
+    cjkKatakanaMiddleDot = '\u30FB'
     
     #Bopomofo and zhuyin
-    cjkBopomofo = u'\u3105-\u312D\u31A0-\u31A5\u02EA\u02EB\u02CA\u02C7\u02CB\u02D9'
+    cjkBopomofo = '\u3105-\u312D\u31A0-\u31A5\u02EA\u02EB\u02CA\u02C7\u02CB\u02D9'
 
 
 class DictionaryWord:
@@ -76,18 +76,18 @@ class Dictionary:
             #A comment line
             return None
 
-        cjkRange = u'%s%s%s%s%s%s%s%s' % (CJK.cjkKatakanaMiddleDot, CJK.cjkFullwidthComma, CJK.cjkLingZero, CJK.cjkUnifiedIdeographsExtA, CJK.cjkUnifiedIdeographs, CJK.cjkCompatibilityIdeographs, CJK.cjkFullwidthLatin, CJK.cjkBopomofo)
+        cjkRange = '%s%s%s%s%s%s%s%s' % (CJK.cjkKatakanaMiddleDot, CJK.cjkFullwidthComma, CJK.cjkLingZero, CJK.cjkUnifiedIdeographsExtA, CJK.cjkUnifiedIdeographs, CJK.cjkCompatibilityIdeographs, CJK.cjkFullwidthLatin, CJK.cjkBopomofo)
 
         # Allow semicolons in pinyin, because the chardict has them that way
         #pat = u'([%s]+)[ \t]([%s]+)[ \t]\[([a-zA-Z0-9,\xb7: ]+)\][ \t]/(.*)/\s*$' % (cjkRange, cjkRange)
-        pat = u'([%s]+)[ \t]([%s]+)[ \t]\[([a-zA-Z0-9,\xb7:; ]+)\][ \t]/(.*)/\s*$' % (cjkRange, cjkRange)
+        pat = '([%s]+)[ \t]([%s]+)[ \t]\[([a-zA-Z0-9,\xb7:; ]+)\][ \t]/(.*)/\s*$' % (cjkRange, cjkRange)
 
-        m = re.match(pat, unicode(line, "utf-8"))
+        m = re.match(pat, str(line, "utf-8"))
         if m:
             return DictionaryWord(m.group(1),m.group(2),m.group(3),m.group(4))
         else:
             if self.verbose:
-                self.messages.append('Warning: Invalid CEDICT entry in line %d of %s: "%s"' % (lineno, self.filename, unicode(line, "utf-8")))
+                self.messages.append('Warning: Invalid CEDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
                 
             return None
 
@@ -96,11 +96,11 @@ class Dictionary:
             #A comment line
             return None
 
-        cjkRange = u'%s%s%s%s%s%s%s%s' % (CJK.cjkKatakanaMiddleDot, CJK.cjkFullwidthComma, CJK.cjkLingZero, CJK.cjkUnifiedIdeographsExtA, CJK.cjkUnifiedIdeographs, CJK.cjkCompatibilityIdeographs, CJK.cjkFullwidthLatin, CJK.cjkBopomofo)
+        cjkRange = '%s%s%s%s%s%s%s%s' % (CJK.cjkKatakanaMiddleDot, CJK.cjkFullwidthComma, CJK.cjkLingZero, CJK.cjkUnifiedIdeographsExtA, CJK.cjkUnifiedIdeographs, CJK.cjkCompatibilityIdeographs, CJK.cjkFullwidthLatin, CJK.cjkBopomofo)
 
-        pat = u'([%s]+) \[([a-zA-Z0-9,\xb7: ]+)\] /(.*)/\s*$' % (cjkRange, cjkRange)
+        pat = '([%s]+) \[([a-zA-Z0-9,\xb7: ]+)\] /(.*)/\s*$' % (cjkRange, cjkRange)
 
-        m = re.match(pat, unicode(line, "utf-8"))
+        m = re.match(pat, str(line, "utf-8"))
         if m:
             if character == 'simplified':
                 return DictionaryWord(m.group(1), None, m.group(2), m.group(3))
@@ -108,7 +108,7 @@ class Dictionary:
                 return DictionaryWord(None, m.group(1), m.group(2), m.group(3))
         else:
             if self.verbose:
-                self.messages.append('Warning: Invalid EDICT entry in line %d of %s: "%s"' % (lineno, self.filename, unicode(line, "utf-8")))
+                self.messages.append('Warning: Invalid EDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
             return None
 
     def readCedictFile(self,filename,updatefunction):
@@ -120,7 +120,7 @@ class Dictionary:
         try:
             filebytes = os.path.getsize(filename)
             fh = open(filename)  #throws IOError
-        except (WindowsError, OSError, IOError), e:
+        except (WindowsError, OSError, IOError) as e:
             self.messages.append("Warning: Failed to load dictionary %s: %s" % (filename, e.message))
             return
         try:
@@ -167,7 +167,7 @@ class Dictionary:
         try:
             lineno = 0
             for line in fh.read().splitlines():
-                line = unicode(line, "utf-8")
+                line = str(line, "utf-8")
                 if re.match('\\s*#', line):
                     # These are comment lines
                     continue
@@ -179,7 +179,7 @@ class Dictionary:
                         self.words.append(word)
                 else:
                     if self.verbose:
-                        self.messages.append('Warning: Invalid tab entry in line %d of %s: "%s"' % (lineno, self.filename, unicode(line, "utf-8")))
+                        self.messages.append('Warning: Invalid tab entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
 
                 lineno += 1
         finally:
@@ -263,7 +263,7 @@ class Statistics:
             curline = 0
             for line in fh.read().splitlines():
                 curline +=1
-                line = unicode(line, "utf-8")
+                line = str(line, "utf-8")
                 if formatType == 'tab':
                     m = re.match('^# Heading: ', line)
                     if m:
@@ -401,7 +401,7 @@ class Segmenter:
     dictionaryOperationTypes = ('replace', 'append', 'addifempty')
     dataTypes = ('words', 'chinese_names', 'foreign_names', 'chinese_place_names', 'chengyu')
 
-    sectionBreakChar = u'\u00A7' #(Section Sign)
+    sectionBreakChar = '\u00A7' #(Section Sign)
     sectionBreakPattern = "%s\\s*(\\[([^\\]]*)\\])?" % sectionBreakChar
 
 
@@ -538,7 +538,7 @@ class Segmenter:
 
     def _buildStatistics(self):
         #TODO verify character set matches
-        for statItem in self.statistics.values():
+        for statItem in list(self.statistics.values()):
             for stat in statItem.words:
                 word = self.getWord(stat.word)
                 if word:
@@ -581,7 +581,7 @@ class Segmenter:
 
         # For now, we will assume no hard wrapping; i.e., linefeeds can mark the end of a sentence
         #notTokens = u"(([.!?????]+)|[ \t]{2,}|\s+)"
-        notTokens = u"(([\.!\?\"\uFF0E\u3002\uFF1F\uFF01\u201d]+)|[ \t]{2,}|\s+)"
+        notTokens = "(([\.!\?\"\uFF0E\u3002\uFF1F\uFF01\u201d]+)|[ \t]{2,}|\s+)"
         "Note: the stop delimiters are group 2; add these to the original sentence if found"
 
         idx = 0
@@ -620,7 +620,7 @@ class Segmenter:
             methods = {}
             for m in SegmentMethodPlugin.__subclasses__():
                 methods[m.key] = m
-            print methods
+            print(methods)
             cls = methods[method]
             seg = cls()
             return seg.segment(self, text, updatefunction)
@@ -680,14 +680,14 @@ class Segmenter:
     def loadPlugins(self, pluginFolder):
         import sys
         loadedPlugins = []
-        print "wtf"
-        print pluginFolder
+        print("wtf")
+        print(pluginFolder)
         if not os.path.exists(pluginFolder):
-            print "Plugin folder does not exist"
+            print("Plugin folder does not exist")
             return loadedPlugins
         sys.path.insert(0, pluginFolder)
         #plugins = self.enabledPlugins()
-        print os.listdir(pluginFolder)
+        print(os.listdir(pluginFolder))
         plugins = [i for i in os.listdir(pluginFolder) if i.endswith(".py") and i != "__init__.py"]
         plugins.sort()
         for plugin in plugins:
@@ -696,11 +696,11 @@ class Segmenter:
                 __import__(nopy)
                 #self.addMessage("Plugin %s loaded" % (plugin))
                 loadedPlugins.append(nopy)
-                print "Segmenter plugin %s loaded" % (plugin)
+                print("Segmenter plugin %s loaded" % (plugin))
                 
             except:
                 #print "Error in %s" % plugin
-                print "Plugin %s failed to load: %s" % (plugin, sys.exc_info()[0])
+                print("Plugin %s failed to load: %s" % (plugin, sys.exc_info()[0]))
                 import traceback
                 traceback.print_exc()
 

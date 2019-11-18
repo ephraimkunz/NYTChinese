@@ -10,13 +10,10 @@ from segmenterhelper import SegmenterHelper
 
 
 if __name__ == "__main__":
-    import wxapp
-
     try:
         modDir=os.path.dirname(os.path.abspath(__file__))
         runningDir=os.path.split(modDir)[0]
     except NameError:
-        # py2exe
         runningDir=os.path.dirname(sys.argv[0])
         modDir=runningDir
 
