@@ -1,5 +1,6 @@
 # NYTChinese
-Extract top articles from Chinese NYT and create lists of words for practice
+Extract top articles from Chinese NYT and create lists of words for practice.
+Everything is running on Python3.
 
 TODO:
 - [ ] Get ChineseWordExtractor running.
