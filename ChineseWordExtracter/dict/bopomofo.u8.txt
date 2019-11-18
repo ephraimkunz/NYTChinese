@@ -1,0 +1,56 @@
+#
+#Source: http://en.wikipedia.org/wiki/Bopomofo
+#
+ㄅ	ㄅ	[xx5]	/bopomofo symbol/represents pinyin b-/
+ㄆ	ㄆ	[xx5]	/bopomofo symbol/represents pinyin p-/
+ㄇ	ㄇ	[xx5]	/bopomofo symbol/represents pinyin m-/
+ㄈ	ㄈ	[xx5]	/bopomofo symbol/represents pinyin f-/
+ㄉ	ㄉ	[xx5]	/bopomofo symbol/represents pinyin d-/
+ㄊ	ㄊ	[xx5]	/bopomofo symbol/represents pinyin t-/
+ㄋ	ㄋ	[xx5]	/bopomofo symbol/represents pinyin n-/
+ㄌ	ㄌ	[xx5]	/bopomofo symbol/represents pinyin l-/
+ㄍ	ㄍ	[xx5]	/bopomofo symbol/represents pinyin g-/
+ㄎ	ㄎ	[xx5]	/bopomofo symbol/represents pinyin k-/
+ㄏ	ㄏ	[xx5]	/bopomofo symbol/represents pinyin h-/
+ㄐ	ㄐ	[xx5]	/bopomofo symbol/represents pinyin j-/
+ㄑ	ㄑ	[xx5]	/bopomofo symbol/represents pinyin q-/
+ㄒ	ㄒ	[xx5]	/bopomofo symbol/represents pinyin x-/
+ㄓ	ㄓ	[xx5]	/bopomofo symbol/represents pinyin zh-/
+ㄔ	ㄔ	[xx5]	/bopomofo symbol/represents pinyin ch-/
+ㄕ	ㄕ	[xx5]	/bopomofo symbol/represents pinyin sh-/
+ㄖ	ㄖ	[xx5]	/bopomofo symbol/represents pinyin r-/
+ㄗ	ㄗ	[xx5]	/bopomofo symbol/represents pinyin z-/
+ㄘ	ㄘ	[xx5]	/bopomofo symbol/represents pinyin c-/
+ㄙ	ㄙ	[xx5]	/bopomofo symbol/represents pinyin s-/
+ㄚ	ㄚ	[xx5]	/bopomofo symbol/represents pinyin a/
+ㄛ	ㄛ	[xx5]	/bopomofo symbol/represents pinyin o/
+ㄜ	ㄜ	[xx5]	/bopomofo symbol/represents pinyin e/
+ㄝ	ㄝ	[xx5]	/bopomofo symbol/represents pinyin ê/
+ㄞ	ㄞ	[xx5]	/bopomofo symbol/represents pinyin ai/
+ㄟ	ㄟ	[xx5]	/bopomofo symbol/represents pinyin ei/
+ㄠ	ㄠ	[xx5]	/bopomofo symbol/represents pinyin ao/
+ㄡ	ㄡ	[xx5]	/bopomofo symbol/represents pinyin ou/
+ㄢ	ㄢ	[xx5]	/bopomofo symbol/represents pinyin -an/
+ㄣ	ㄣ	[xx5]	/bopomofo symbol/represents pinyin -en/
+ㄤ	ㄤ	[xx5]	/bopomofo symbol/represents pinyin -ang/
+ㄥ	ㄥ	[xx5]	/bopomofo symbol/represents pinyin -eng/
+ㄦ	ㄦ	[xx5]	/bopomofo symbol/represents pinyin -er/
+ㄧ	ㄧ	[xx5]	/bopomofo symbol/represents pinyin -i/y/
+ㄨ	ㄨ	[xx5]	/bopomofo symbol/represents pinyin -u/w/
+ㄩ	ㄩ	[xx5]	/bopomofo symbol/represents pinyin -ü/yu/u/
+ㄭ	ㄭ	[xx5]	/bopomofo symbol/represents pinyin -i/
+ㄪ	ㄪ	[xx5]	/bopomofo symbol/represents pinyin v (non-standard dialects)/
+ㄫ	ㄫ	[xx5]	/bopomofo symbol/represents pinyin ng (non-standard dialects)/
+ㄬ	ㄬ	[xx5]	/bopomofo symbol/represents pinyin ny (non-standard dialects)/
+ㆠ	ㆠ	[xx5]	/bopomofo symbol/represents extended zhuyin bb/
+ㆡ	ㆡ	[xx5]	/bopomofo symbol/represents extended zhuyin zz/
+ㆢ	ㆢ	[xx5]	/bopomofo symbol/represents extended zhuyin zzi/
+ㆣ	ㆣ	[xx5]	/bopomofo symbol/represents extended zhuyin gg/
+ㆤ	ㆤ	[xx5]	/bopomofo symbol/represents extended zhuyin e/
+ㆥ	ㆥ	[xx5]	/bopomofo symbol/represents extended zhuyin enn/
+˪	˪	[xx5]	/bopomofo symbol/represents tone value 21 (陰去聲 "upper departing")/
+˫	˫	[xx5]	/bopomofo symbol/represents tone value 33  (陽去聲 "lower departing")/
+ˊ	ˊ	[xx5]	/bopomofo symbol/represents tone 2/
+ˇ	ˇ	[xx5]	/bopomofo symbol/represents tone 3/
+ˋ	ˋ	[xx5]	/bopomofo symbol/represents tone 4/
+˙	˙	[xx5]	/bopomofo symbol/represents tone 5/
