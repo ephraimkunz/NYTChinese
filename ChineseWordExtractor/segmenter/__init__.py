@@ -3,9 +3,9 @@ Copyright 2011 by Chad Redman <chad at zhtoolkit.com>
 License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 '''
 
-import re,os
+import re, os
 
-from segmenter.plugins import SegmentMethodPlugin
+from ChineseWordExtractor.segmenter.plugins import SegmentMethodPlugin
 print(SegmentMethodPlugin.__subclasses__())
 
 
@@ -116,7 +116,7 @@ class Dictionary:
             filebytes = os.path.getsize(filename)
             fh = open(filename)  #throws IOError
         except (OSError, IOError) as e:
-            self.messages.append("Warning: Failed to load dictionary %s: %s" % (filename, e.message))
+            print("Warning: Failed to load dictionary %s: %s" % (filename, e))
             return
         try:
             lineno = 0
