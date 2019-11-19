@@ -188,8 +188,6 @@ class SegmenterHelper:
         self.summary += "Total count of unique filtered Chinese words: %d" % wordUniqueNet + "\n"
 
         # Sort results by count_in_corpus, then by freq_per_million
-        print('\n\n')
-        print(RachelsCategories.csv_header)
         self.results.sort(key=lambda x: (x.count_in_corpus, x.freq_per_mil), reverse=True)
 
     def GetFileItems(self, directory):
@@ -207,7 +205,7 @@ class SegmenterHelper:
 
 class RachelsCategories:
     # Separate with pipes since text can have spaces, commas, semicolons, slashes
-    csv_header = "original_word|pinyin|english|freq_per_mil|count_in_corpus"
+    csv_header = "original_word\tpinyin\tenglish\tfreq_per_mil\tcount_in_corpus"
     def __init__(self, orig_word, pinyin, english, freq_per_mil, count_in_corpus):
         self.orig_word = orig_word
         self.pinyin = pinyin
@@ -219,7 +217,7 @@ class RachelsCategories:
         return self.orig_word != '' and self.pinyin != '' and self.english != ''
 
     def csv_line(self):
-        return '{}|{}|{}|{}|{}'.format(self.orig_word, self.pinyin, self.english, self.freq_per_mil, self.count_in_corpus)
+        return '{}\t{}\t{}\t{}\t{}'.format(self.orig_word, self.pinyin, self.english, self.freq_per_mil, self.count_in_corpus)
 
     def __repr__(self):
         return self.csv_line()
