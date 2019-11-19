@@ -7,6 +7,7 @@ import os, sys
 
 from segmenterhelper import SegmenterHelper, RachelsCategories
 
+NUM_NEW_WORDS_PER_RUN = 20
 
 config = None
 
@@ -46,13 +47,33 @@ def run(segHelper):
     print(segHelper.summary)
 
     import codecs
+    import csv
     try:
-        f = codecs.open(opts.outputfile, encoding='utf-8', mode='w')
+        # Read out all rows in file
+        all_words = set()
 
-        f.write(RachelsCategories.csv_header + "\n")
-        results = '\n'.join([str(x) for x in segHelper.results])
-        f.write(results)
-        f.close()        
+        if os.path.exists(opts.outputfile):
+            with open(opts.outputfile, 'r+') as tsvfile:
+                reader = csv.DictReader(tsvfile, dialect='excel-tab')
+                for row in reader:
+                    all_words.add(row["original_word"])
+
+        with open(opts.outputfile, 'a+') as tsvfile:
+            if len(all_words) == 0:
+                tsvfile.write(RachelsCategories.csv_header)
+
+            new_words = []
+
+            for word in segHelper.results:
+                if word.orig_word not in all_words:
+                    new_words.append(word)
+
+                if len(new_words) == NUM_NEW_WORDS_PER_RUN:
+                    break
+
+            tsvfile.write("\n")
+            results = '\n'.join([str(x) for x in new_words])
+            tsvfile.write(results)
     except (OSError, IOError) as e:
         print("Warning: Failed to write to output file %s: %s" % (opts.outputfile, e))
     

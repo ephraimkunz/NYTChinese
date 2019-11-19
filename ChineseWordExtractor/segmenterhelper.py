@@ -5,7 +5,7 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
 import segmenter
 import os
-
+import datetime
 
 # The data here gets refreshed when called
 class SegmenterHelper:
@@ -179,7 +179,7 @@ class SegmenterHelper:
                     english = word.definition.english
                     count_in_corpus = len(lex.indexes)
 
-                    self.results.append(RachelsCategories(lex.text, pinyin, english, freq_per_million, count_in_corpus))
+                    self.results.append(RachelsCategories(datetime.datetime.now(), lex.text, pinyin, english, freq_per_million, count_in_corpus))
 
         
         self.summary += "\n\nTotal count of Chinese words in text: %d" % wordctGross + "\n"
@@ -205,8 +205,9 @@ class SegmenterHelper:
 
 class RachelsCategories:
     # Separate with pipes since text can have spaces, commas, semicolons, slashes
-    csv_header = "original_word\tpinyin\tenglish\tfreq_per_mil\tcount_in_corpus"
-    def __init__(self, orig_word, pinyin, english, freq_per_mil, count_in_corpus):
+    csv_header = "date\toriginal_word\tpinyin\tenglish\tfreq_per_mil\tcount_in_corpus"
+    def __init__(self, date, orig_word, pinyin, english, freq_per_mil, count_in_corpus):
+        self.date = date
         self.orig_word = orig_word
         self.pinyin = pinyin
         self.english = english
@@ -217,7 +218,7 @@ class RachelsCategories:
         return self.orig_word != '' and self.pinyin != '' and self.english != ''
 
     def csv_line(self):
-        return '{}\t{}\t{}\t{}\t{}'.format(self.orig_word, self.pinyin, self.english, self.freq_per_mil, self.count_in_corpus)
+        return '{}\t{}\t{}\t{}\t{}\t{}'.format(self.date.strftime("%b %d %Y"), self.orig_word, self.pinyin, self.english, self.freq_per_mil, self.count_in_corpus)
 
     def __repr__(self):
         return self.csv_line()

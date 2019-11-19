@@ -10,7 +10,7 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/ChineseWordExtractor/ChineseWordExtractor.py",
-            "args": ["-i", "testData/test.txt", "-o", "testData/out.txt"],
+            "args": ["-i", "testData/test.txt", "-o", "testData/out.tsv"],
             "console": "integratedTerminal"
         }
     ]
