@@ -14,7 +14,7 @@ class SegmenterHelper:
 
     def addMessage(self, text):
         try:
-            self.messages.append(str(text, "utf-8"))
+            self.messages.append(str(text))
             #self.messages.append(text)
         except TypeError:
             try:
@@ -98,8 +98,8 @@ class SegmenterHelper:
         try:
             for line in fh.read().splitlines():
                 lineno += 1
-                if not re.match('\s*#', str(line, "utf-8")):
-                    m = re.match('[^ \t]+', str(line, "utf-8"))
+                if not re.match('\s*#', str(line)):
+                    m = re.match('[^ \t]+', str(line))
                     if m:
                         self.filterwords.append(m.group(0))
         finally:

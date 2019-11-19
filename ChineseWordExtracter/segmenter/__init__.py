@@ -8,11 +8,6 @@ import re,os
 from segmenter.plugins import SegmentMethodPlugin
 print(SegmentMethodPlugin.__subclasses__())
 
-try:
-    WindowsError
-except NameError:
-    WindowsError = OSError
-
 
 
 class CJK:
@@ -82,12 +77,12 @@ class Dictionary:
         #pat = u'([%s]+)[ \t]([%s]+)[ \t]\[([a-zA-Z0-9,\xb7: ]+)\][ \t]/(.*)/\s*$' % (cjkRange, cjkRange)
         pat = '([%s]+)[ \t]([%s]+)[ \t]\[([a-zA-Z0-9,\xb7:; ]+)\][ \t]/(.*)/\s*$' % (cjkRange, cjkRange)
 
-        m = re.match(pat, str(line, "utf-8"))
+        m = re.match(pat, str(line))
         if m:
             return DictionaryWord(m.group(1),m.group(2),m.group(3),m.group(4))
         else:
             if self.verbose:
-                self.messages.append('Warning: Invalid CEDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
+                self.messages.append('Warning: Invalid CEDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line)))
                 
             return None
 
@@ -100,7 +95,7 @@ class Dictionary:
 
         pat = '([%s]+) \[([a-zA-Z0-9,\xb7: ]+)\] /(.*)/\s*$' % (cjkRange, cjkRange)
 
-        m = re.match(pat, str(line, "utf-8"))
+        m = re.match(pat, str(line))
         if m:
             if character == 'simplified':
                 return DictionaryWord(m.group(1), None, m.group(2), m.group(3))
@@ -108,7 +103,7 @@ class Dictionary:
                 return DictionaryWord(None, m.group(1), m.group(2), m.group(3))
         else:
             if self.verbose:
-                self.messages.append('Warning: Invalid EDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
+                self.messages.append('Warning: Invalid EDICT entry in line %d of %s: "%s"' % (lineno, self.filename, str(line)))
             return None
 
     def readCedictFile(self,filename,updatefunction):
@@ -120,7 +115,7 @@ class Dictionary:
         try:
             filebytes = os.path.getsize(filename)
             fh = open(filename)  #throws IOError
-        except (WindowsError, OSError, IOError) as e:
+        except (OSError, IOError) as e:
             self.messages.append("Warning: Failed to load dictionary %s: %s" % (filename, e.message))
             return
         try:
@@ -167,7 +162,7 @@ class Dictionary:
         try:
             lineno = 0
             for line in fh.read().splitlines():
-                line = str(line, "utf-8")
+                line = str(line)
                 if re.match('\\s*#', line):
                     # These are comment lines
                     continue
@@ -179,7 +174,7 @@ class Dictionary:
                         self.words.append(word)
                 else:
                     if self.verbose:
-                        self.messages.append('Warning: Invalid tab entry in line %d of %s: "%s"' % (lineno, self.filename, str(line, "utf-8")))
+                        self.messages.append('Warning: Invalid tab entry in line %d of %s: "%s"' % (lineno, self.filename, str(line)))
 
                 lineno += 1
         finally:
@@ -263,7 +258,7 @@ class Statistics:
             curline = 0
             for line in fh.read().splitlines():
                 curline +=1
-                line = str(line, "utf-8")
+                line = str(line)
                 if formatType == 'tab':
                     m = re.match('^# Heading: ', line)
                     if m:
@@ -507,15 +502,15 @@ class Segmenter:
         else:
             self.dictionaryOperationType = dictionaryOperationType
 
-        self.loadPlugins("segmenter/plugins")
+        self.loadPlugins("ChineseWordExtracter/segmenter/plugins")
 
-        self.words = {};
-        self._buildWordList();
-        self._buildStatistics();
+        self.words = {}
+        self._buildWordList()
+        self._buildStatistics()
 
     def setStatistics(self, statDict):
         self.statistics = statDict
-        self._buildStatistics();
+        self._buildStatistics()
 
     def _buildWordList(self):
         for dict in self.dictionaries:

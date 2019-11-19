@@ -13,7 +13,7 @@ config = None
 def run(segHelper):
     import os, sys, optparse
     #import config
-    from . import config
+    import config
 
     # parse args
     parser = optparse.OptionParser()
@@ -24,11 +24,11 @@ def run(segHelper):
     parser.add_option("-o", "--outputfile", help="When using an inputfile parameter, print summary output to a file (use '-' as filename to print to the console), and do not show an application window")
     parser.add_option("--appdir", help="Base directory of the application. It must contain subdirectories dict, data, and filter",
                       default=segHelper.runningDir)
-    (opts, args) = parser.parse_args(sys.argv[1:])
+    (opts, _) = parser.parse_args(sys.argv[1:])
 
     # configuration
     config = config.Config(
-       str(os.path.abspath(opts.config), sys.getfilesystemencoding()))
+       str(os.path.abspath(opts.config)))
 
     #config.appDir = segHelper.runningDir
     config.appDir = opts.appdir

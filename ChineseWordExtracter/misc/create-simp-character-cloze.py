@@ -22,7 +22,7 @@ out = codecs.getwriter('utf-8')(sys.stdout)
 
 
 #filename_words = "../data/simplified/Freq_per_Million_Leeds_internet_50k.u8";
-filename_words = "../data/simplified/Freq_per_Million.U8";
+filename_words = "../data/simplified/Freq_per_Million.U8"
 
 words = {}
 clozes = {}
@@ -31,10 +31,10 @@ clozes = {}
 
 try:
     fh = open(filename_words)  #throws IOError
-    lines = str(fh.read(), "utf-8").splitlines()
+    lines = str(fh.read()).splitlines()
     fh.close()
-except (WindowsError, IOError) as e:
-    print("Error: Failed to load source file %s: %s" % (filename, e.message))
+except (IOError) as e:
+    print("Error: Failed to load source file %s: %s" % (filename_words, e))
     sys.exit(1)
 
 

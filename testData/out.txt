@@ -1,0 +1,45 @@
+Length of text = 84
+
+
+Results.tokens (43)
+
+
+Total count of Chinese words in text: 36
+Total count of filtered Chinese words: 36
+
+Total count of unique Chinese words: 30
+Total count of unique filtered Chinese words: 30
+
+
+Word num.	Running total words	text	num. occur.	1st occur.	traditional	simplified	pinyin	english	sample sentence
+		§ [test.txt]	1	0				Unknown	
+1	1	泄露	1	13	泄露	泄露	xie4 lu4	/to leak (information)/to divulge/also pr. [xie4 lou4]/	*泄露*文件已引发广泛的国际批评，但中国将镇压描述为反恐行动的成功。
+2	3	文件	2	15	文件	文件	wen2 jian4	/document/file/CL:份[fen4]/	泄露*文件*已引发广泛的国际批评，但中国将镇压描述为反恐行动的成功。
+3	4	已	1	17	已	已	yi3	/already/to stop/then/afterwards/	泄露文件*已*引发广泛的国际批评，但中国将镇压描述为反恐行动的成功。
+4	5	引发	1	18	引發	引发	yin3 fa1	/to lead to/to trigger/to initiate/to cause/to evoke (emotions)/	泄露文件已*引发*广泛的国际批评，但中国将镇压描述为反恐行动的成功。
+5	6	广泛	1	20	廣泛	广泛	guang3 fan4	/extensive/wide range/	泄露文件已引发*广泛*的国际批评，但中国将镇压描述为反恐行动的成功。
+6	10	的	4	22	的	的	de5; di2; di4	/of/~'s (possessive particle)/(used after an attribute)/(used to form a nominal expression)/(used at the end of a declarative sentence for emphasis); really and truly; aim/clear/	泄露文件已引发广泛*的*国际批评，但中国将镇压描述为反恐行动的成功。
+7	11	国际	1	23	國際	国际	guo2 ji4	/international/	泄露文件已引发广泛的*国际*批评，但中国将镇压描述为反恐行动的成功。
+8	12	批评	1	25	批評	批评	pi1 ping2	/to criticize/criticism/CL:個|个[ge4]/	泄露文件已引发广泛的国际*批评*，但中国将镇压描述为反恐行动的成功。
+9	14	但	2	28	但	但	dan4	/but/yet/however/only/merely/still/	泄露文件已引发广泛的国际批评，*但*中国将镇压描述为反恐行动的成功。
+10	16	中国	2	29	中國	中国	Zhong1 guo2	/China/	泄露文件已引发广泛的国际批评，但*中国*将镇压描述为反恐行动的成功。
+11	17	将	1	31	將	将	jiang1; jiang4; qiang1	/will/shall/to use/to take/to checkmate/just a short while ago; general/commander-in-chief (military)/king (chess piece)/to command/to lead; to desire/to invite/to request/	泄露文件已引发广泛的国际批评，但中国*将*镇压描述为反恐行动的成功。
+12	18	镇压	1	32	鎮壓	镇压	zhen4 ya1	/suppression/repression/to suppress/to put down/to quell/	泄露文件已引发广泛的国际批评，但中国将*镇压*描述为反恐行动的成功。
+13	19	描述	1	34	描述	描述	miao2 shu4	/to describe/description/	泄露文件已引发广泛的国际批评，但中国将镇压*描述*为反恐行动的成功。
+14	20	为	1	36	為; 爲	为	wei2; wei4	/as (in the capacity of)/to take sth as/to act as/to serve as/to behave as/to become/to be/to do/by (in the passive voice); because of/for/to; as (i.e. in the capacity of)/to take sth as/to act as/to serve as/to behave as/to become/to be/to do; variant of 為|为[wei4], because of/for/to/	泄露文件已引发广泛的国际批评，但中国将镇压描述*为*反恐行动的成功。
+15	21	反恐	1	37	反恐	反恐	fan3 kong3	/anti-terrorism/to fight against terrorism/	泄露文件已引发广泛的国际批评，但中国将镇压描述为*反恐*行动的成功。
+16	22	行动	1	39	行動	行动	xing2 dong4	/operation/action/to move/mobile/CL:個|个[ge4]/	泄露文件已引发广泛的国际批评，但中国将镇压描述为反恐*行动*的成功。
+17	23	成功	1	42	成功	成功	Cheng2 gong1; cheng2 gong1	/Chenggong or Chengkung town in Taitung county 臺東縣|台东县[Tai2 dong1 xian4], southeast Taiwan; success/to succeed/CL:次[ci4],個|个[ge4]/	泄露文件已引发广泛的国际批评，但中国将镇压描述为反恐行动的*成功*。
+18	24	外交部	1	45	外交部	外交部	Wai4 jiao1 bu4	/Ministry of Foreign Affairs/foreign office/Dept. of State/	*外交部*指时报报道污蔑抹黑中国打击极端主义的努力，但未质疑403页文件的真实性。
+19	25	指	1	48	指	指	zhi3	/finger/to point at or to/to indicate or refer to/to depend on/to count on/(of hair) to stand on end/	外交部*指*时报报道污蔑抹黑中国打击极端主义的努力，但未质疑403页文件的真实性。
+20	26	时报	1	49	時報	时报	Shi2 Bao4	/"Times" (newspaper, e.g. New York Times)/	外交部指*时报*报道污蔑抹黑中国打击极端主义的努力，但未质疑403页文件的真实性。
+21	27	报道	1	51	報道	报道	bao4 dao4	/report/CL:篇[pian1],份[fen4]/	外交部指时报*报道*污蔑抹黑中国打击极端主义的努力，但未质疑403页文件的真实性。
+22	28	污蔑	1	53	污衊	污蔑	wu1 mie4	/to slander/to smear/to tarnish/	外交部指时报报道*污蔑*抹黑中国打击极端主义的努力，但未质疑403页文件的真实性。
+23	29	抹黑	1	55	抹黑	抹黑	mo3 hei1	/to discredit/to defame/to smear sb's name/to bring shame upon (oneself or one's family etc)/to blacken (e.g. commando's face for camouflage)/to black out or obliterate (e.g. censored words)/	外交部指时报报道污蔑*抹黑*中国打击极端主义的努力，但未质疑403页文件的真实性。
+24	30	打击	1	59	打擊	打击	da3 ji1	/to hit/to strike/to attack/to crack down on sth/a setback/a blow/percussion (music)/	外交部指时报报道污蔑抹黑中国*打击*极端主义的努力，但未质疑403页文件的真实性。
+25	31	极端主义	1	61	極端主義	极端主义	ji2 duan1 zhu3 yi4	/extremism/	外交部指时报报道污蔑抹黑中国打击*极端主义*的努力，但未质疑403页文件的真实性。
+26	32	努力	1	66	努力	努力	nu3 li4	/great effort/to strive/to try hard/	外交部指时报报道污蔑抹黑中国打击极端主义的*努力*，但未质疑403页文件的真实性。
+27	33	未	1	70	未	未	wei4	/not yet/did not/have not/not/8th earthly branch: 1-3 p.m., 6th solar month (7th July-6th August), year of the Sheep/	外交部指时报报道污蔑抹黑中国打击极端主义的努力，但*未*质疑403页文件的真实性。
+28	34	质疑	1	71	質疑	质疑	zhi4 yi2	/to call into question/to question (truth or validity)/	外交部指时报报道污蔑抹黑中国打击极端主义的努力，但未*质疑*403页文件的真实性。
+29	35	页	1	76	頁	页	ye4	/page/leaf/	外交部指时报报道污蔑抹黑中国打击极端主义的努力，但未质疑403*页*文件的真实性。
+30	36	真实性	1	80	真實性	真实性	zhen1 shi2 xing4	/authenticity/truthfulness/veracity/reality/validity/	外交部指时报报道污蔑抹黑中国打击极端主义的努力，但未质疑403页文件的*真实性*。

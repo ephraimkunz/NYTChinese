@@ -99,9 +99,9 @@ def Tone2Number(tonepy):
 
 try:
     fh = open(filename)  #throws IOError
-    lines = str(fh.read(), "utf-8").splitlines()
+    lines = str(fh.read()).splitlines()
     fh.close()
-except (WindowsError, IOError) as e:
+except (IOError) as e:
     print("Error: Failed to load source file %s: %s" % (filename, e.message))
     sys.exit(1)
 
