@@ -32,7 +32,7 @@ class SegmenterHelper:
 
     def __init__(self, runningDir):
         self.text = ''
-        self.results = ''
+        self.results = []
         self.summary = ''
         self.messages = []
         self.runningDir = runningDir
@@ -146,35 +146,15 @@ class SegmenterHelper:
 
     def SummarizeResults(self, updatefunction=None):
         self.summary = ''
-        self.results = ''
+        self.results = []
 
         self.addMessage("Analyzing text ...")
 
         self.summary += "Length of text = %d" % len(self.text) + "\n"
         results = self.seg.segment(self.text, updatefunction, None) #"ReversedLongestMatch"
-        self.summary += "\n\nResults.tokens (%d)" % len(results.tokens) + "\n"
+        self.summary += "Results.tokens (%d)" % len(results.tokens) + "\n"
 
         self.tokens = ' | '.join(t.text for t in results.tokens)
-
-#        for lex in results.tokens:
-#            sys.stdout.write(lex.text)
-
-        self.results +=  '\t'.join(
-                [
-                 "Word num.",
-                 "Running total words",
-                 "text",
-                 "num. occur.",
-                 "1st occur."
-                ] +
-                [ self.statFiles[filename] for filename in self.config["extracolumns"] ] +
-                [
-                 "traditional",
-                 "simplified",
-                 "pinyin",
-                 "english",
-                 "sample sentence"
-                ])  + "\n"
 
         wordctGross = 0
         wordctNet = 0
@@ -184,57 +164,33 @@ class SegmenterHelper:
         for lex in results.lexList:
             word = results.words[lex.text]
             if word == None:
-                self.results +=  '\t'.join(
-                            [
-                             '',
-                             '',
-                             lex.text,
-                             str(len(lex.indexes)),
-                             str(lex.indexes[0])
-                            ] + 
-                            [ '' for y in self.config["extracolumns"]] +
-                            [
-                             '',
-                             '',
-                             '',
-                             'Unknown',
-                             ''
-                            ]
-                        ) + "\n"
-            elif word.isSectionBreak():
-                self.results +=  "-------------------\t%s" % (lex.text) + "\n"
+                continue
             else:
                 wordctGross += len(lex.indexes)
                 wordUniqueGross += 1
                 if lex.text not in self.filterwords:
-                    #print '\t'.join( (lex.text, str(len(lex.indexes)), str(lex.indexes[0]), word.getStatistic('hsk_level'), word.getStatistic('frequency_per_million'), word.getStatistic('chengyu_num_sources'), str(word.getDefinition()), str(results.findFirstSentence(lex))) )
-                    wordUniqueNet += 1
-                    wordctNet += len(lex.indexes)
-                    self.results +=  '\t'.join(
-                            [
-                             str(wordUniqueNet),
-                             str(wordctNet),
-                             lex.text,
-                             str(len(lex.indexes)),
-                             str(lex.indexes[0])
-                            ] +
-                            [ word.getStatistic(self.statFiles[y]) for y in self.config["extracolumns"]] +
-                            [
-                             word.getDefinition(),
-                            results.findFirstSentence(lex)
-                            ]
-                            
-                        ) + "\n"
-                    #self.results +=  '\t'.join( (str(wordUniqueNet), str(wordctNet))) + "\t"
-                    #self.results +=  '\t'.join( (str(wordUniqueNet), lex.text)) + "\t"
-                    #self.results +=  '\t'.join( (str(wordUniqueNet), str(len(lex.indexes)), str(lex.indexes[0]), word.getStatistic('hsk_level'), word.getStatistic('frequency_per_million'), word.getStatistic('chengyu_num_sources'))) + "\t"
-                    #self.results +=  '\t'.join( ( unicode(word.getDefinition(), "utf-8") )) + "\t"
-                    #self.results +=  '\t'.join( (results.findFirstSentence(lex))) + "\n"
+                    freq_per_million = 0
+                    try:
+                        freq_per_million = float(word.getStatistic('Word freq-Leeds internet corpus'))
+                    except:
+                        pass
+
+                    pinyin = convertPinyin(word.definition.pinyin)
+                    english = word.definition.english
+                    count_in_corpus = len(lex.indexes)
+
+                    self.results.append(RachelsCategories(lex.text, pinyin, english, freq_per_million, count_in_corpus))
+
         
         self.summary += "\n\nTotal count of Chinese words in text: %d" % wordctGross + "\n"
         self.summary += "Total count of filtered Chinese words: %d" % wordctNet + "\n"
         self.summary += "\nTotal count of unique Chinese words: %d" % wordUniqueGross + "\n"
         self.summary += "Total count of unique filtered Chinese words: %d" % wordUniqueNet + "\n"
+
+        # Sort results by count_in_corpus, then by freq_per_million
+        print('\n\n')
+        print(RachelsCategories.csv_header)
+        self.results.sort(key=lambda x: (x.count_in_corpus, x.freq_per_mil), reverse=True)
 
     def GetFileItems(self, directory):
         import stat
@@ -248,3 +204,46 @@ class SegmenterHelper:
             if stat.S_ISREG(st.st_mode):
                 choices.append(filename)
         return choices
+
+class RachelsCategories:
+    # Separate with pipes since text can have spaces, commas, semicolons, slashes
+    csv_header = "original_word|pinyin|english|freq_per_mil|count_in_corpus"
+    def __init__(self, orig_word, pinyin, english, freq_per_mil, count_in_corpus):
+        self.orig_word = orig_word
+        self.pinyin = pinyin
+        self.english = english
+        self.freq_per_mil = freq_per_mil
+        self.count_in_corpus = count_in_corpus
+
+    def is_valid(self):
+        return self.orig_word != '' and self.pinyin != '' and self.english != ''
+
+    def csv_line(self):
+        return '{}|{}|{}|{}|{}'.format(self.orig_word, self.pinyin, self.english, self.freq_per_mil, self.count_in_corpus)
+
+    def __repr__(self):
+        return self.csv_line()
+
+# Pinyin numbers to tone marks. From https://stackoverflow.com/questions/8200349/convert-numbered-pinyin-to-pinyin-with-tone-marks
+import re
+
+pinyinToneMarks = {
+    u'a': u'āáǎà', u'e': u'ēéěè', u'i': u'īíǐì',
+    u'o': u'ōóǒò', u'u': u'ūúǔù', u'ü': u'ǖǘǚǜ',
+    u'A': u'ĀÁǍÀ', u'E': u'ĒÉĚÈ', u'I': u'ĪÍǏÌ',
+    u'O': u'ŌÓǑÒ', u'U': u'ŪÚǓÙ', u'Ü': u'ǕǗǙǛ'
+}
+
+def convertPinyinCallback(m):
+    tone=int(m.group(3))%5
+    r=m.group(1).replace(u'v', u'ü').replace(u'V', u'Ü')
+    # for multple vowels, use first one if it is a/e/o, otherwise use second one
+    pos=0
+    if len(r)>1 and not r[0] in 'aeoAEO':
+        pos=1
+    if tone != 0:
+        r=r[0:pos]+pinyinToneMarks[r[pos]][tone-1]+r[pos+1:]
+    return r+m.group(2)
+
+def convertPinyin(s):
+    return re.sub(r'([aeiouüvÜ]{1,3})(n?g?r?)([012345])', convertPinyinCallback, s, flags=re.IGNORECASE)

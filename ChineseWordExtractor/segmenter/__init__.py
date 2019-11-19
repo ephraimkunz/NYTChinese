@@ -502,7 +502,7 @@ class Segmenter:
         else:
             self.dictionaryOperationType = dictionaryOperationType
 
-        self.loadPlugins("ChineseWordExtracter/segmenter/plugins")
+        self.loadPlugins("ChineseWordExtractor/segmenter/plugins")
 
         self.words = {}
         self._buildWordList()

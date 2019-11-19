@@ -5,7 +5,7 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
 import os, sys
 
-from segmenterhelper import SegmenterHelper
+from segmenterhelper import SegmenterHelper, RachelsCategories
 
 
 config = None
@@ -41,23 +41,21 @@ def run(segHelper):
     if opts.inputfile:
         segHelper.ReadFiles( [opts.inputfile])
 
+    segHelper.SummarizeResults()
+    print("\n")
+    print(segHelper.summary)
 
-    if opts.outputfile:
-        segHelper.SummarizeResults()
-        if opts.outputfile == "-":
-            print(segHelper.summary)
-            print("\n\n")
-            print(segHelper.results)
-        else:
-            import codecs
-            try:
-                f = codecs.open(opts.outputfile, encoding='utf-8', mode='w')
-                f.write(segHelper.summary + "\n\n" + segHelper.results)
-                f.close()        
-            except (OSError, IOError) as e:
-                print("Warning: Failed to write to output file %s: %s" % (opts.outputfile, e))
-        sys.exit()
+    import codecs
+    try:
+        f = codecs.open(opts.outputfile, encoding='utf-8', mode='w')
 
+        f.write(RachelsCategories.csv_header + "\n")
+        results = '\n'.join([str(x) for x in segHelper.results])
+        f.write(results)
+        f.close()        
+    except (OSError, IOError) as e:
+        print("Warning: Failed to write to output file %s: %s" % (opts.outputfile, e))
+    
 if __name__ == "__main__":
     try:
         modDir=os.path.dirname(os.path.abspath(__file__))

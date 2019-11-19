@@ -27,8 +27,8 @@ class Config(dict):
     def setDefaults(self):
         fields = {
             #'dicts': {"cedict_ts.u8" : "cedict"},
-            'filters': [],
-            'extracolumns': [],
+            'filters': ['Leeds internet corpus Top 300 words.u8'],
+            'extracolumns': ['Freq_per_Million_Leeds_internet_50k.u8'],
             'currentdir': "samples",
             'dictionaries': ['cedict_ts-merged-refs.u8'],
             'charset': 'simplified',
