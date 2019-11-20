@@ -46,6 +46,3 @@ def get_concatenated_text():
         all_text += "\n"
     
     return all_text
-
-if __name__ == "__main__":
-    print(get_concatenated_text())

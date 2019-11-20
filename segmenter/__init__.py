@@ -4,9 +4,7 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 '''
 
 import re, os
-
 from segmenter.plugins import SegmentMethodPlugin
-print(SegmentMethodPlugin.__subclasses__())
 
 class CJK:
     #http://en.wikipedia.org/wiki/CJK_Unified_Ideographs

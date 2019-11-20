@@ -5,8 +5,8 @@ from segmenterhelper import SegmenterHelper, RachelsCategories
 from config import Config
 
 NUM_NEW_WORDS_PER_RUN = 20
-INPUT_FILE_PATH = "corpus.txt"
-OUTPUT_FILE_PATH = "out.tsv"
+INPUT_FILE_PATH = os.path.expanduser("/tmp/corpus.txt")
+OUTPUT_FILE_PATH = os.path.expanduser("~/Desktop/out.tsv")
 CONFIG_FILE_PATH = "config.db"
 
 def dedupe_and_dump_results(segHelper):
@@ -78,7 +78,9 @@ def main():
     print("Deduping results and dumping new wordlist file...")
     dedupe_and_dump_results(segHelper)
 
-    print("Done!")
+    print("Done! Output file written to {}".format(OUTPUT_FILE_PATH))
+
+    input("Press enter to exit...")
 
 if __name__ == "__main__":
     main()
