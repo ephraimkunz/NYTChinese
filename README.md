@@ -33,4 +33,4 @@ Each time you run DoubleClickMe.command, it will fetch the article data from NYT
 ## Credits
 The Chinese segmentation code, word frequency, and dictionary information all comes from source code that originally powered http://www.zhtoolkit.com/apps/chinese_word_extractor/. Source code is here: http://svn.zhtoolkit.com/ChineseWordExtractor/trunk/
 
-I used (PyInstaller)[https://www.pyinstaller.org] to package all the code for distribution.
+I used [PyInstaller](https://www.pyinstaller.org) to package all the code for distribution.
