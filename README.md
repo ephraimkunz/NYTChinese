@@ -11,7 +11,7 @@ script that does `cd -- "$(dirname "$BASH_SOURCE")"` right after the shebang and
 I've included a file that does this that should be copied into the same directory as the main executable 
 called DoubleClickMe.command. You can do all of the above and package a nice zip file with `./createZip`.
 
-Instructions I gave Rachel for setup:
+## Instructions I gave Rachel for setup:
 One time setup
 1. Download the zip file here: https://gofile.io/?c=adK4dX
 2. Open the folder that downloaded.
