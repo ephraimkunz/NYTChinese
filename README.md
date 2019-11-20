@@ -9,7 +9,7 @@ However, just double-clicking the `main` binary probably will open a terminal wi
 need to either execute it after navigating to it's containing folder via the commandline, or create a 
 script that does `cd -- "$(dirname "$BASH_SOURCE")"` right after the shebang and before calling `main`.
 I've included a file that does this that should be copied into the same directory as the main executable 
-called DoubleClickMe.command.
+called DoubleClickMe.command. You can do all of the above and package a nice zip file with `./createZip`.
 
 Instructions I gave Rachel for setup:
 One time setup

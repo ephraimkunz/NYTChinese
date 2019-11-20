@@ -1,0 +1,4 @@
+ #!/bin/sh
+ sudo pyinstaller -y --clean main.spec
+ sudo cp ./DoubleClickMe.command ./dist/main
+ zip -r main.zip ./dist/main/ 
