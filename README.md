@@ -30,4 +30,7 @@ Every time
 
 Each time you run DoubleClickMe.command, it will fetch the article data from NYT at that moment and open this file, adding 20 more unique words to the end. So don’t move it from the Desktop or else it will create new one, starting over (and forgetting words you’ve seen before).
 
-Let me know if you have any problems or questions.
+## Credits
+The Chinese segmentation code, word frequency, and dictionary information all comes from source code that originally powered http://www.zhtoolkit.com/apps/chinese_word_extractor/. Source code is here: http://svn.zhtoolkit.com/ChineseWordExtractor/trunk/
+
+I used (PyInstaller)[https://www.pyinstaller.org] to package all the code for distribution.
