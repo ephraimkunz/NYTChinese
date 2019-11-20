@@ -30,6 +30,16 @@ Every time
 
 Each time you run DoubleClickMe.command, it will fetch the article data from NYT at that moment and open this file, adding 20 more unique words to the end. So don’t move it from the Desktop or else it will create new one, starting over (and forgetting words you’ve seen before).
 
+## Example Output
+A tab separated value file is produced / appended to. Here's the format of the file:
+
+date | original_word | pinyin | english | freq_per_mil | count_in_corpus
+--- | --- | --- | --- | --- | ---
+Nov 19 2019 | 香港 | Xiāng gǎng | Hong Kong | 187.0 | 50
+Nov 19 2019	| 特	| tè | special/unique/distinguished/especially/unusual/very |	237.0 |	32
+Nov 19 2019 |	朗	| lǎng	| clear/bright |	15.0	| 31
+Nov 19 2019 |	普 |pǔ |	general/popular/everywhere/universal |	58.0 |	30
+
 ## Original Workflow / Specs
 From Rachel Finlayson via email: "I've been wanting to create a spreadsheet that "reads" the top 5 articles in the World section of the New York Times in Chinese for the past week (https://cn.nytimes.com/world/) and creates one 20-word vocabulary list based on the most commonly used words in those articles. Ideally the next week, when it makes a new 20-character list, it "reads" the past list(s) and ignores any repeats from past weeks in choosing the next top 20.
 
