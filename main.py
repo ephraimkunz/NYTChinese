@@ -1,8 +1,8 @@
 import os, sys, csv
 
 import datafetch
-from ChineseWordExtractor.segmenterhelper import SegmenterHelper, RachelsCategories
-from ChineseWordExtractor.config import Config
+from segmenterhelper import SegmenterHelper, RachelsCategories
+from config import Config
 
 NUM_NEW_WORDS_PER_RUN = 20
 INPUT_FILE_PATH = "corpus.txt"
@@ -43,7 +43,7 @@ def dedupe_and_dump_results(segHelper):
     
 def main():
     # Fetch Chinese text and write to input file
-    print("NYT Chinese Word Extractor\n\n")
+    print("NYT Chinese Word Extractor\nBy Ephraim Kunz\n\n")
 
     print("Fetching text from cn.nytimes.com...")
     text = datafetch.get_concatenated_text()

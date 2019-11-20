@@ -3,7 +3,7 @@ Copyright 2011 by Chad Redman <chad at zhtoolkit.com>
 License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 '''
 
-from ChineseWordExtractor import segmenter
+import segmenter
 import os
 import datetime
 
@@ -150,14 +150,13 @@ class SegmenterHelper:
 
         self.addMessage("Analyzing text ...")
 
-        self.summary += "Length of text = %d" % len(self.text) + "\n"
+        self.summary += "Length of text: %d" % len(self.text) + "\n"
         results = self.seg.segment(self.text, updatefunction, None) #"ReversedLongestMatch"
-        self.summary += "Results.tokens (%d)" % len(results.tokens) + "\n"
+        self.summary += "Num tokens: %d" % len(results.tokens) + "\n"
 
         self.tokens = ' | '.join(t.text for t in results.tokens)
 
         wordctGross = 0
-        wordctNet = 0
         wordUniqueGross = 0
         wordUniqueNet = 0
 
@@ -169,6 +168,7 @@ class SegmenterHelper:
                 wordctGross += len(lex.indexes)
                 wordUniqueGross += 1
                 if lex.text not in self.filterwords:
+                    wordUniqueNet += 1
                     freq_per_million = 0
                     try:
                         freq_per_million = float(word.getStatistic('Word freq-Leeds internet corpus'))
@@ -182,9 +182,8 @@ class SegmenterHelper:
                     self.results.append(RachelsCategories(datetime.datetime.now(), lex.text, pinyin, english, freq_per_million, count_in_corpus))
 
         
-        self.summary += "\n\nTotal count of Chinese words in text: %d" % wordctGross + "\n"
-        self.summary += "Total count of filtered Chinese words: %d" % wordctNet + "\n"
-        self.summary += "\nTotal count of unique Chinese words: %d" % wordUniqueGross + "\n"
+        self.summary += "Total count of Chinese words in text: %d" % wordctGross + "\n"
+        self.summary += "Total count of unique Chinese words: %d" % wordUniqueGross + "\n"
         self.summary += "Total count of unique filtered Chinese words: %d" % wordUniqueNet + "\n"
 
         # Sort results by count_in_corpus, then by freq_per_million

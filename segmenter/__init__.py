@@ -5,10 +5,8 @@ License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
 import re, os
 
-from ChineseWordExtractor.segmenter.plugins import SegmentMethodPlugin
+from segmenter.plugins import SegmentMethodPlugin
 print(SegmentMethodPlugin.__subclasses__())
-
-
 
 class CJK:
     #http://en.wikipedia.org/wiki/CJK_Unified_Ideographs
@@ -502,7 +500,7 @@ class Segmenter:
         else:
             self.dictionaryOperationType = dictionaryOperationType
 
-        self.loadPlugins("ChineseWordExtractor/segmenter/plugins")
+        self.loadPlugins("segmenter/plugins")
 
         self.words = {}
         self._buildWordList()
@@ -675,7 +673,6 @@ class Segmenter:
     def loadPlugins(self, pluginFolder):
         import sys
         loadedPlugins = []
-        print("wtf")
         print(pluginFolder)
         if not os.path.exists(pluginFolder):
             print("Plugin folder does not exist")
