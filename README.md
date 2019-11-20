@@ -31,12 +31,12 @@ Every time
 Each time you run DoubleClickMe.command, it will fetch the article data from NYT at that moment and open this file, adding 20 more unique words to the end. So don’t move it from the Desktop or else it will create new one, starting over (and forgetting words you’ve seen before).
 
 ## Original Workflow / Specs
- I've been wanting to create a spreadsheet that "reads" the top 5 articles in the World section of the New York Times in Chinese for the past week (https://cn.nytimes.com/world/) and creates one 20-word vocabulary list based on the most commonly used words in those articles. Ideally the next week, when it makes a new 20-character list, it "reads" the past list(s) and ignores any repeats from past weeks in choosing the next top 20.
+From Rachel Finlayson via email: "I've been wanting to create a spreadsheet that "reads" the top 5 articles in the World section of the New York Times in Chinese for the past week (https://cn.nytimes.com/world/) and creates one 20-word vocabulary list based on the most commonly used words in those articles. Ideally the next week, when it makes a new 20-character list, it "reads" the past list(s) and ignores any repeats from past weeks in choosing the next top 20.
 
 I found this tool that makes the kind of list I'd want when you paste text in. -  http://www.zhtoolkit.com/apps/wordlist/create-list.cgi?rm=makevocabform
 It reads pasted text and creates the categories I want in the vocabulary list which are Original word, Pinyin-tone marks, English, Freq. per 1 million words, No. occurrences. It even is smart enough to know when characters are part of word sets, idioms, or are meant to be on their own (some tools I've seen only look at unique characters, so for example instead of 可以they list 可 and 以 on their own, which isn't helpful).
 
-The flow manually: go to the NYT website and highlight/copy/paste from five articles to input text, go to the Chinese dictionary website above, select the output options, take the top 20 and copy-paste into an Excel, reading it myself to see which words are repeated from prior weeks. It would be cool to figure out a way to do that automatically if that's possible.
+The flow manually: go to the NYT website and highlight/copy/paste from five articles to input text, go to the Chinese dictionary website above, select the output options, take the top 20 and copy-paste into an Excel, reading it myself to see which words are repeated from prior weeks. It would be cool to figure out a way to do that automatically if that's possible."
 
 ## Credits
 The Chinese segmentation code, word frequency, and dictionary information all comes from source code that originally powered http://www.zhtoolkit.com/apps/chinese_word_extractor/. Source code is here: http://svn.zhtoolkit.com/ChineseWordExtractor/trunk/
