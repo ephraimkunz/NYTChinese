@@ -49,6 +49,6 @@ It reads pasted text and creates the categories I want in the vocabulary list wh
 The flow manually: go to the NYT website and highlight/copy/paste from five articles to input text, go to the Chinese dictionary website above, select the output options, take the top 20 and copy-paste into an Excel, reading it myself to see which words are repeated from prior weeks. It would be cool to figure out a way to do that automatically if that's possible."
 
 ## Credits
-The Chinese segmentation code, word frequency, and dictionary information all comes from source code that originally powered http://www.zhtoolkit.com/apps/chinese_word_extractor/. Source code is here: http://svn.zhtoolkit.com/ChineseWordExtractor/trunk/
+The Chinese segmentation code, word frequency, and dictionary information all comes from source code that originally powered http://www.zhtoolkit.com/apps/chinese_word_extractor/. Source code is here: https://github.com/cer28/ChineseWordExtractor
 
 I used [PyInstaller](https://www.pyinstaller.org) to package all the code for distribution.
